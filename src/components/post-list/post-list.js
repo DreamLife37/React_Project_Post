@@ -1,27 +1,38 @@
 import React from 'react';
 
 import PostListItem from '../post-list-item';
+import { ListGroup } from 'reactstrap';
 import './post-list.css';
 
-const PostList = ({posts}) => {
+const PostList = ({posts, onDelete}) => {
 
     const elements = posts.map((item) => {
-        const {id, ...itemProps} = item;
-        return (
-            <li key={id} className='list-group-item'>
-                <PostListItem 
-                id={item.id}
-                label={item.label} 
-                important={item.important} /> 
-            </li> //вместо вышестоящих двух строк можно записать {...item}
-
-        )
+        //Проверка данных с сервера на объект и содержание в нем информации:
+        if (typeof item === 'object' && isEmpty(item)) {
+            const {id, ...itemProps} = item;
+            return (
+                <li key={id} className='list-group-item'>
+                    <PostListItem 
+                    {...itemProps}
+                    onDelete={() => onDelete(id)}/> 
+                </li>
+            )
+        }
+       
     })
 
+    function isEmpty(obj) {
+        for(let key in obj)
+        {
+            return true;
+        }
+            return false;
+    }
+
     return (
-        <ul className="app-list list-group">
+        <ListGroup className="app-list">
             {elements}
-        </ul>
+        </ListGroup>
     )
 }
 
