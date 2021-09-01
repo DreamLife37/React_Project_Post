@@ -1,3 +1,6 @@
+
+![Alt text](https://github.com/DreamLife37/React_Project_Post/blob/main/React_Project_Post.gif)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
